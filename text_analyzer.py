@@ -1,3 +1,5 @@
+import os
+import pathlib
 import requests
 import string
 from collections import Counter
@@ -30,7 +32,7 @@ def count_letters(text):
     num_letters = 0
     for char in text:
         if char.isalpha():
-            num_letters +=1
+            num_letters += 1
     return num_letters
 
 
@@ -51,6 +53,12 @@ def get_report(text):
     for char in string.ascii_uppercase:
         counter = Counter(text.upper())
         print("%s: %i" % (char, counter[char]))
+
+
+def exit_program():
+    filePath = pathlib.Path(FILENAME)
+    if filePath.exists():
+        os.remove(filePath)
 
 
 if __name__ == "__main__":
@@ -90,4 +98,5 @@ if __name__ == "__main__":
         elif choice == 7:
             print("Selected option %s not yet implemented" % choice)  # TO DO, REPLACE AFTER IMPLEMENTATION
         elif choice == 8:
-            print("Selected option %s not yet implemented" % choice)  # TO DO, REPLACE AFTER IMPLEMENTATION
+            exit_program()  # when #7 get implemented add stat file to function as well.
+            break
